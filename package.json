@@ -1,7 +1,21 @@
 {
+  "license": "MIT",
   "dependencies": {
     "next": "^9.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "build": "next build",
+    "deploy": "netlify deploy",
+    "dev": "next",
+    "lint": "eslint --ignore-path .gitignore './**/*.{js,jsx}'",
+    "prettify": "prettier --ignore-path .gitignore --write './**/*.{js,jsx,json,md}'"
   }
 }
