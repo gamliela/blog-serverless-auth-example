@@ -1,5 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 
+let nextId = 0;
+
 function ShoppingList() {
   const [list, setList] = useState([]);
   const inputElement = useRef(null);
@@ -22,7 +24,7 @@ function ShoppingList() {
     <table>
       <tbody>
         {list.map((item, i) => (
-          <tr key={i}>
+          <tr key={nextId++}>
             <td>{item}</td>
             <td>
               <button onClick={() => deleteItem(i)}>Delete</button>
