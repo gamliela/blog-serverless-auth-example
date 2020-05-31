@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "next build",
-    "deploy": "netlify deploy",
+    "export": "next export",
+    "deploy-prod": "netlify deploy --dir=out --prod",
     "dev": "next",
     "lint": "eslint --ignore-path .gitignore './**/*.{js,jsx}'",
     "prettify": "prettier --ignore-path .gitignore --write './**/*.{js,jsx,json,md}'"
