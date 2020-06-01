@@ -30,5 +30,6 @@ module.exports = {
   rules: {
     "react-hooks/rules-of-hooks": "error", // checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // checks effect dependencies
+    "react/prop-types": "off", // checks prop types definitions
   },
 };
