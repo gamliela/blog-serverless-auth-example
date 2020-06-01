@@ -1,35 +1,40 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { loadShoppingList, saveShoppingList } from "../shared/database";
 
-let nextId = 1;
+let nextId = 0;
 
-function ShoppingList() {
+function ShoppingList({ listName }) {
   const [list, setList] = useState([]);
   const inputElement = useRef(null);
 
   // adds the value in inputElement to the list
   const addItem = useCallback(() => {
     if (inputElement.current && inputElement.current.value) {
-      const newValue = inputElement.current.value;
-      setList((list) => [...list, { id: nextId++, value: newValue }]);
+      const newList = [...list, inputElement.current.value];
+      saveShoppingList(listName, newList).then(() => setList(newList));
       inputElement.current.value = "";
     }
-  }, []);
+  }, [listName, list]);
 
-  // removes item from the list, identified by id
-  const deleteItem = (id) => {
-    setList((list) => list.filter((item) => item.id != id));
+  // removes the i'th item from the list
+  const deleteItem = (index) => {
+    const newList = list.filter((_, i) => i != index);
+    saveShoppingList(listName, newList).then(() => setList(newList));
   };
+
+  // load initial list from the database
+  useEffect(() => {
+    loadShoppingList(listName).then(setList);
+  }, [listName]);
 
   return (
     <table>
       <tbody>
-        {list.map((item) => (
-          <tr key={item.id}>
+        {list.map((item, i) => (
+          <tr key={nextId++}>
+            <td>{item}</td>
             <td>
-              {item.id}: {item.value}
-            </td>
-            <td>
-              <button onClick={() => deleteItem(item.id)}>Delete</button>
+              <button onClick={() => deleteItem(i)}>Delete</button>
             </td>
           </tr>
         ))}

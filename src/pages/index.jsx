@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <h1>Your shopping list</h1>
-      <ShoppingList />
+      <ShoppingList listName="default" />
     </div>
   );
 }
