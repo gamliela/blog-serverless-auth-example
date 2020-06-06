@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 
 if (typeof window !== "undefined") {
   firebase.initializeApp({
