@@ -1,11 +1,11 @@
 import React from "react";
-import ShoppingList from "../components/ShoppingList";
+import PersonalShoppingList from "../components/PersonalShoppingList";
 
 function HomePage() {
   return (
     <div>
       <h1>Your shopping list</h1>
-      <ShoppingList listName="default" />
+      <PersonalShoppingList />
     </div>
   );
 }
